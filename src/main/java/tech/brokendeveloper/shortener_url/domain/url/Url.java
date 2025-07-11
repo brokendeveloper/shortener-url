@@ -1,4 +1,4 @@
-package tech.brokendeveloper.shortener_url.domain;
+package tech.brokendeveloper.shortener_url.domain.url;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
