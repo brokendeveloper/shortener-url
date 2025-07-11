@@ -21,4 +21,4 @@ networks:
       driver: bridge
 
 volumes:
-  shortner-url-data:
+  shortener-url-data:
