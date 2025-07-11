@@ -1,0 +1,26 @@
+# Build artifacts
+target/
+.mvn/wrapper/maven-wrapper.jar
+
+# Log files
+*.log
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Misc
+HELP.md
+
+# IDEs
+.idea/
+*.iml
+*.classpath
+*.project
+*.settings/
+
+# Environment files
+.env
+application.yml
+application.properties
