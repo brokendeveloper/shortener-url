@@ -1,4 +1,4 @@
-package tech.brokendeveloper.shortener_url.domain.url.controllers;
+package tech.brokendeveloper.shortener_url.application;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
