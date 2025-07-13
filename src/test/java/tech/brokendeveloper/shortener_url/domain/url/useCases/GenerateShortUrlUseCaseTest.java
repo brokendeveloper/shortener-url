@@ -32,9 +32,6 @@ public class GenerateShortUrlUseCaseTest {
     @Mock
     private SecureGenerateUrlString secureGenerateUrlString;
 
-    @Mock
-    private ValidateUrl validateUrl;
-
     @InjectMocks
     private GenerateShortUrlUseCase useCase;
 
@@ -48,7 +45,6 @@ public class GenerateShortUrlUseCaseTest {
         String shortUrl = "https://localhost:8080/abc123";
         UrlRequestDTO request = new UrlRequestDTO(originalUrl);
 
-        when(validateUrl.isValidUrl(originalUrl)).thenReturn(true);
         when(secureGenerateUrlString.generateUrlString()).thenReturn(shortCode);
         when(urlBuilder.builderUrl(shortCode)).thenReturn(shortUrl);
         when(urlRepository.save(any(Url.class))).thenReturn(new Url());
@@ -59,22 +55,12 @@ public class GenerateShortUrlUseCaseTest {
         // then
         assertEquals(shortUrl, response.shortenedUrl());
         verify(urlRepository).save(any(Url.class));
-        verify(validateUrl).isValidUrl(originalUrl);
         verify(secureGenerateUrlString).generateUrlString();
         verify(urlBuilder).builderUrl(shortCode);
 
     }
 
-    @Test
-    void shouldThrowExceptionWhenUrlIsInvalid() {
-        //given
-        String invalidUrl = "htx:/invalid";
-        UrlRequestDTO request = new UrlRequestDTO(invalidUrl);
 
-        // when & then
-        assertThrows(InvalidUrlException.class, () -> useCase.execute(request));
-
-    }
 
     @Test
     void ShouldRetryAndSucceedWhenShortCodeCollisionOccurs(){
@@ -87,7 +73,6 @@ public class GenerateShortUrlUseCaseTest {
         UrlRequestDTO request = new UrlRequestDTO(originalUrl);
 
 
-        when(validateUrl.isValidUrl(originalUrl)).thenReturn(true);
 
         // first attempt = shortCode1, second = shortCode2
         when(secureGenerateUrlString.generateUrlString())
@@ -123,7 +108,6 @@ public class GenerateShortUrlUseCaseTest {
         String shortUrl1 = "https://localhost:8080/abc123";
         UrlRequestDTO request = new UrlRequestDTO(originalUrl);
 
-        when(validateUrl.isValidUrl(originalUrl)).thenReturn(true);
         when(secureGenerateUrlString.generateUrlString())
                 .thenReturn(shortCode1)
                 .thenReturn(shortCode2)
