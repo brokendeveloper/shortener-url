@@ -1,4 +1,4 @@
-    package tech.brokendeveloper.shortener_url.domain.url.dto;
+    package tech.brokendeveloper.shortener_url.domain.url.api.v1.dto;
 
 
     import jakarta.validation.Validation;
