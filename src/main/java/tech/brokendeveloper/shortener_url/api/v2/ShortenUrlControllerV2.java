@@ -40,7 +40,7 @@ public class ShortenUrlControllerV2 {
                     @ApiResponse(responseCode = "201",
                             description = "Short URL created successfully",
                             content = {
-                                    @Content(schema = @Schema(implementation = ShortenUrlResponseDtoV1.class))
+                                    @Content(schema = @Schema(implementation = ShortenUrlResponseDtoV2.class))
                             }),
                     @ApiResponse(
                             responseCode = "400",

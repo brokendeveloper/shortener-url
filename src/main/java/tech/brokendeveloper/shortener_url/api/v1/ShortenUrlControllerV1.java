@@ -19,7 +19,7 @@ import tech.brokendeveloper.shortener_url.domain.url.useCases.GenerateShortUrlUs
 
 @RestController
 @RequestMapping("/api/v1/urls")
-@Tag(name = "URLs", description = "Endpoints about the URLs")
+@Tag(name = "URLs", description = "Endpoints about the URLs - version 1")
 public class ShortenUrlControllerV1 {
 
     private final GenerateShortUrlUseCaseV1 generateShortUrlUseCaseV1;
@@ -30,8 +30,8 @@ public class ShortenUrlControllerV1 {
 
     @PostMapping("/shorten")
     @Operation(
-            summary = "Create a shortened URL",
-            description = "Receives an original URL and returns a shortened version."
+            summary = "Create a shortened URL (v1)",
+            description = "Receives an original URL and returns a shortened version using a String generator short code."
     )
     @ApiResponses(
             {
