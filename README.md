@@ -1,12 +1,12 @@
-# URL Shortener
+# Encurtador de URL
 
-This project is a simple URL shortener created as a technical test for TDS company.
+Este projeto é um simples encurtador de URL criado como um teste técnico para a empresa TDS.
 
-## Description
+## Descrição
 
-The application takes a long URL and generates a shorter, unique alias. When a user accesses the short alias, they are redirected to the original long URL.
+A aplicação recebe uma URL longa e gera um alias único e mais curto. Quando um usuário acessa o alias curto, ele é redirecionado para a URL longa original.
 
-## Technologies Used
+## Tecnologias Utilizadas
 
 *   **Java 17**
 *   **Spring Boot 3.5.3**
@@ -16,29 +16,29 @@ The application takes a long URL and generates a shorter, unique alias. When a u
 *   **PostgreSQL**
 *   **Lombok**
 
-## How to Run
+## Como Executar
 
-1.  **Prerequisites:**
-    *   Java 17 or later
+1.  **Pré-requisitos:**
+    *   Java 17 ou superior
     *   Maven
-    *   A running PostgreSQL instance
+    *   Uma instância do PostgreSQL em execução
 
-2.  **Configuration:**
-    *   In the `src/main/resources` directory, you'll find a file named `application.example.yml`.
-    *   Create a copy of this file and rename it to `application.yml`.
-    *   Open the new `application.yml` file and update the `spring.datasource` properties (url, username, password) to match your PostgreSQL configuration.
+2.  **Configuração:**
+    *   No diretório `src/main/resources`, você encontrará um arquivo chamado `application.example.yml`.
+    *   Crie uma cópia deste arquivo e renomeie para `application.yml`.
+    *   Abra o novo arquivo `application.yml` e atualize as propriedades `spring.datasource` (url, username, password) para corresponder à sua configuração do PostgreSQL.
 
-3.  **Execution:**
-    *   Clone the repository.
-    *   Run the application using the following Maven command in the project root:
+3.  **Execução:**
+    *   Clone o repositório.
+    *   Execute a aplicação usando o seguinte comando Maven na raiz do projeto:
         ```bash
         ./mvnw spring-boot:run
         ```
 
-## Branching Model
+## Modelo de Branch
 
-The `main` branch is used for the initial setup of this project. All ongoing development is done in the `developer` branch.
+A branch `main` é usada para a configuração inicial deste projeto. Todo o desenvolvimento contínuo é feito na branch `developer`.
 
-## API Endpoints
+## Endpoints da API
 
-(Details of the API endpoints will be added here.)
+(Os detalhes dos endpoints da API serão adicionados aqui.)
