@@ -5,15 +5,16 @@
     import jakarta.validation.Validator;
     import jakarta.validation.ValidatorFactory;
     import org.junit.jupiter.api.Test;
+    import tech.brokendeveloper.shortener_url.api.v1.dto.ShortenUrlRequestDtoV1;
 
     import static org.junit.jupiter.api.Assertions.assertFalse;
     import static org.junit.jupiter.api.Assertions.assertTrue;
 
-    public class UrlRequestDTOTest {
+    public class ShortenUrlRequestDtoV1Test {
 
         private final Validator validator;
 
-        UrlRequestDTOTest() {
+        ShortenUrlRequestDtoV1Test() {
             ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
             validator = factory.getValidator();
         }
@@ -22,21 +23,21 @@
 
         @Test
         void shouldPassValidationWhenOriginalUrlIsValid() {
-            UrlRequestDTO dto = new UrlRequestDTO("https://www.brokendeveloper.com");
+            ShortenUrlRequestDtoV1 dto = new ShortenUrlRequestDtoV1("https://www.brokendeveloper.com");
             var violations = validator.validate(dto);
             assertTrue(violations.isEmpty());
         }
 
         @Test
         void shouldPassValidationWhenOriginalUrlIsLocalhost() {
-            UrlRequestDTO dto = new UrlRequestDTO("http://localhost:8080");
+            ShortenUrlRequestDtoV1 dto = new ShortenUrlRequestDtoV1("http://localhost:8080");
             var violations = validator.validate(dto);
             assertTrue(violations.isEmpty());
         }
 
         @Test
         void shouldFailValidationWhenOriginalUrlIsBlank() {
-            UrlRequestDTO dto = new UrlRequestDTO("");
+            ShortenUrlRequestDtoV1 dto = new ShortenUrlRequestDtoV1("");
             var violations = validator.validate(dto);
             assertFalse(violations.isEmpty());
         }
@@ -44,21 +45,21 @@
 
         @Test
         void shouldFailValidationWhenOriginalUrlIsNull() {
-            UrlRequestDTO dto = new UrlRequestDTO(null);
+            ShortenUrlRequestDtoV1 dto = new ShortenUrlRequestDtoV1(null);
             var violations = validator.validate(dto);
             assertFalse(violations.isEmpty());
         }
 
         @Test
         void shouldFailValidationWhenOriginalUrlHasNoProtocol() {
-            UrlRequestDTO dto = new UrlRequestDTO("www.brokendeveloper.com");
+            ShortenUrlRequestDtoV1 dto = new ShortenUrlRequestDtoV1("www.brokendeveloper.com");
             var violations = validator.validate(dto);
             assertFalse(violations.isEmpty());
         }
 
         @Test
         void shouldFailValidationWhenOriginalUrlHasInvalidProtocol() {
-            UrlRequestDTO dto = new UrlRequestDTO("ftp://www.brokendeveloper.com");
+            ShortenUrlRequestDtoV1 dto = new ShortenUrlRequestDtoV1("ftp://www.brokendeveloper.com");
             var violations = validator.validate(dto);
             assertFalse(violations.isEmpty());
         }

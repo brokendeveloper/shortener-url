@@ -6,11 +6,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.web.util.InvalidUrlException;
 import tech.brokendeveloper.shortener_url.domain.url.Url;
 import tech.brokendeveloper.shortener_url.domain.url.UrlRepository;
-import tech.brokendeveloper.shortener_url.domain.url.dto.UrlRequestDTO;
-import tech.brokendeveloper.shortener_url.domain.url.dto.UrlResponseDTO;
+import tech.brokendeveloper.shortener_url.api.v1.dto.ShortenUrlRequestDtoV1;
+import tech.brokendeveloper.shortener_url.api.v1.dto.ShortenUrlResponseDtoV1;
 import tech.brokendeveloper.shortener_url.exceptions.ShortUrlGenerationException;
 import tech.brokendeveloper.shortener_url.utils.SecureGenerateUrlString;
 import tech.brokendeveloper.shortener_url.utils.UrlBuilder;
@@ -21,7 +20,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class GenerateShortUrlUseCaseTest {
+public class GenerateShortUrlUseCaseV1Test {
 
     @Mock
     private UrlRepository urlRepository;
@@ -33,7 +32,7 @@ public class GenerateShortUrlUseCaseTest {
     private SecureGenerateUrlString secureGenerateUrlString;
 
     @InjectMocks
-    private GenerateShortUrlUseCase useCase;
+    private GenerateShortUrlUseCaseV1 useCase;
 
     // 201 - created
     // Scenario 1: url created successfully
@@ -43,14 +42,14 @@ public class GenerateShortUrlUseCaseTest {
         String originalUrl = "https://www.brokendeveloper.com";
         String shortCode = "abc123";
         String shortUrl = "https://localhost:8080/abc123";
-        UrlRequestDTO request = new UrlRequestDTO(originalUrl);
+        ShortenUrlRequestDtoV1 request = new ShortenUrlRequestDtoV1(originalUrl);
 
         when(secureGenerateUrlString.generateUrlString()).thenReturn(shortCode);
         when(urlBuilder.builderUrl(shortCode)).thenReturn(shortUrl);
         when(urlRepository.save(any(Url.class))).thenReturn(new Url());
 
         // when
-        UrlResponseDTO response = useCase.execute(request);
+        ShortenUrlResponseDtoV1 response = useCase.execute(request);
 
         // then
         assertEquals(shortUrl, response.shortenedUrl());
@@ -70,7 +69,7 @@ public class GenerateShortUrlUseCaseTest {
         String shortCode2 = "def456";
         String shortUrl1 = "https://localhost:8080/abc123";
         String shortUrl2 = "https://localhost:8080/def456";
-        UrlRequestDTO request = new UrlRequestDTO(originalUrl);
+        ShortenUrlRequestDtoV1 request = new ShortenUrlRequestDtoV1(originalUrl);
 
 
 
@@ -87,7 +86,7 @@ public class GenerateShortUrlUseCaseTest {
                 .thenReturn(new Url());
 
         // when
-        UrlResponseDTO response = useCase.execute(request);
+        ShortenUrlResponseDtoV1 response = useCase.execute(request);
 
         // then
         assertEquals(shortUrl2, response.shortenedUrl());
@@ -106,7 +105,7 @@ public class GenerateShortUrlUseCaseTest {
         String shortCode2 = "def456";
         String shortCode3 = "ghi789";
         String shortUrl1 = "https://localhost:8080/abc123";
-        UrlRequestDTO request = new UrlRequestDTO(originalUrl);
+        ShortenUrlRequestDtoV1 request = new ShortenUrlRequestDtoV1(originalUrl);
 
         when(secureGenerateUrlString.generateUrlString())
                 .thenReturn(shortCode1)
