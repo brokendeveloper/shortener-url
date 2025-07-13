@@ -13,7 +13,7 @@ public class UuidShortCodeGenerator {
     public String generateUuidShortCode() {
 
         String uuid = UUID.randomUUID().toString().replace("-", "");
-        int length = 5 + random.nextInt(4);
+        int length = random.nextInt(4) + 5;
 
         String generatedUuid = uuid.substring(0, length);
 
