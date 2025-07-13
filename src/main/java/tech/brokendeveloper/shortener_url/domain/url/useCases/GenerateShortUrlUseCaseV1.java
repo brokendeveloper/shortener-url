@@ -9,7 +9,7 @@ import tech.brokendeveloper.shortener_url.domain.url.UrlRepository;
 import tech.brokendeveloper.shortener_url.api.v1.dto.ShortenUrlRequestDtoV1;
 import tech.brokendeveloper.shortener_url.api.v1.dto.ShortenUrlResponseDtoV1;
 import tech.brokendeveloper.shortener_url.exceptions.ShortUrlGenerationException;
-import tech.brokendeveloper.shortener_url.utils.SecureGenerateUrlString;
+import tech.brokendeveloper.shortener_url.utils.SecureStringShortCodeGenerator;
 import tech.brokendeveloper.shortener_url.utils.UrlBuilder;
 
 @Service
@@ -19,12 +19,12 @@ public class GenerateShortUrlUseCaseV1 {
 
     private final UrlRepository urlRepository;
     private final UrlBuilder urlBuilder;
-    private final SecureGenerateUrlString secureGenerateURLString;
+    private final SecureStringShortCodeGenerator secureStringShortCodeGenerator;
 
-    public GenerateShortUrlUseCaseV1(UrlRepository urlRepository, UrlBuilder urlBuilder, SecureGenerateUrlString secureGenerateURLString) {
+    public GenerateShortUrlUseCaseV1(UrlRepository urlRepository, UrlBuilder urlBuilder, SecureStringShortCodeGenerator secureStringShortCodeGenerator) {
         this.urlRepository = urlRepository;
         this.urlBuilder = urlBuilder;
-        this.secureGenerateURLString = secureGenerateURLString;
+        this.secureStringShortCodeGenerator = secureStringShortCodeGenerator;
     }
 
 
@@ -33,7 +33,7 @@ public class GenerateShortUrlUseCaseV1 {
         int maxAttempts = 3;
         for (int attempt = 0; attempt < maxAttempts; attempt++) {
 
-            String newShortCode = secureGenerateURLString.generateUrlString();
+            String newShortCode = secureStringShortCodeGenerator.generateUrlString();
             String newShortUrl = urlBuilder.builderUrl(newShortCode);
 
             Url urlEntity = new Url();

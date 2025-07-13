@@ -11,7 +11,7 @@ import tech.brokendeveloper.shortener_url.domain.url.UrlRepository;
 import tech.brokendeveloper.shortener_url.api.v1.dto.ShortenUrlRequestDtoV1;
 import tech.brokendeveloper.shortener_url.api.v1.dto.ShortenUrlResponseDtoV1;
 import tech.brokendeveloper.shortener_url.exceptions.ShortUrlGenerationException;
-import tech.brokendeveloper.shortener_url.utils.SecureGenerateUrlString;
+import tech.brokendeveloper.shortener_url.utils.SecureStringShortCodeGenerator;
 import tech.brokendeveloper.shortener_url.utils.UrlBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,7 +29,7 @@ public class GenerateShortUrlUseCaseV1Test {
     private UrlBuilder urlBuilder;
 
     @Mock
-    private SecureGenerateUrlString secureGenerateUrlString;
+    private SecureStringShortCodeGenerator secureStringShortCodeGenerator;
 
     @InjectMocks
     private GenerateShortUrlUseCaseV1 useCase;
@@ -44,7 +44,7 @@ public class GenerateShortUrlUseCaseV1Test {
         String shortUrl = "https://localhost:8080/abc123";
         ShortenUrlRequestDtoV1 request = new ShortenUrlRequestDtoV1(originalUrl);
 
-        when(secureGenerateUrlString.generateUrlString()).thenReturn(shortCode);
+        when(secureStringShortCodeGenerator.generateUrlString()).thenReturn(shortCode);
         when(urlBuilder.builderUrl(shortCode)).thenReturn(shortUrl);
         when(urlRepository.save(any(Url.class))).thenReturn(new Url());
 
@@ -54,7 +54,7 @@ public class GenerateShortUrlUseCaseV1Test {
         // then
         assertEquals(shortUrl, response.shortenedUrl());
         verify(urlRepository).save(any(Url.class));
-        verify(secureGenerateUrlString).generateUrlString();
+        verify(secureStringShortCodeGenerator).generateUrlString();
         verify(urlBuilder).builderUrl(shortCode);
 
     }
@@ -74,7 +74,7 @@ public class GenerateShortUrlUseCaseV1Test {
 
 
         // first attempt = shortCode1, second = shortCode2
-        when(secureGenerateUrlString.generateUrlString())
+        when(secureStringShortCodeGenerator.generateUrlString())
                 .thenReturn(shortCode1)
                 .thenReturn(shortCode2);
         when(urlBuilder.builderUrl(shortCode1)).thenReturn(shortUrl1);
@@ -91,7 +91,7 @@ public class GenerateShortUrlUseCaseV1Test {
         // then
         assertEquals(shortUrl2, response.shortenedUrl());
         verify(urlRepository, times(2)).save(any(Url.class));
-        verify(secureGenerateUrlString, times(2)).generateUrlString();
+        verify(secureStringShortCodeGenerator, times(2)).generateUrlString();
         verify(urlBuilder).builderUrl(shortCode1);
         verify(urlBuilder).builderUrl(shortCode2);
 
@@ -107,7 +107,7 @@ public class GenerateShortUrlUseCaseV1Test {
         String shortUrl1 = "https://localhost:8080/abc123";
         ShortenUrlRequestDtoV1 request = new ShortenUrlRequestDtoV1(originalUrl);
 
-        when(secureGenerateUrlString.generateUrlString())
+        when(secureStringShortCodeGenerator.generateUrlString())
                 .thenReturn(shortCode1)
                 .thenReturn(shortCode2)
                 .thenReturn(shortCode3);
@@ -122,7 +122,7 @@ public class GenerateShortUrlUseCaseV1Test {
         // when & then
         assertThrows(ShortUrlGenerationException.class, () -> useCase.execute(request));
         verify(urlRepository, times(3)).save(any(Url.class));
-        verify(secureGenerateUrlString, times(3)).generateUrlString();
+        verify(secureStringShortCodeGenerator, times(3)).generateUrlString();
     }
 
 
