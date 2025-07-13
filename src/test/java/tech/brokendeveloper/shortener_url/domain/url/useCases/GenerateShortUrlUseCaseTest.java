@@ -14,7 +14,6 @@ import tech.brokendeveloper.shortener_url.domain.url.dto.UrlResponseDTO;
 import tech.brokendeveloper.shortener_url.exceptions.ShortUrlGenerationException;
 import tech.brokendeveloper.shortener_url.utils.SecureGenerateUrlString;
 import tech.brokendeveloper.shortener_url.utils.UrlBuilder;
-import tech.brokendeveloper.shortener_url.utils.ValidateUrl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

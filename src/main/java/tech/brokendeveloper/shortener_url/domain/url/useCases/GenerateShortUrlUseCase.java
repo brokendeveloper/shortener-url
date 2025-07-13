@@ -12,7 +12,6 @@ import tech.brokendeveloper.shortener_url.domain.url.dto.UrlResponseDTO;
 import tech.brokendeveloper.shortener_url.exceptions.ShortUrlGenerationException;
 import tech.brokendeveloper.shortener_url.utils.SecureGenerateUrlString;
 import tech.brokendeveloper.shortener_url.utils.UrlBuilder;
-import tech.brokendeveloper.shortener_url.utils.ValidateUrl;
 
 @Service
 public class GenerateShortUrlUseCase {
@@ -22,20 +21,15 @@ public class GenerateShortUrlUseCase {
     private final UrlRepository urlRepository;
     private final UrlBuilder urlBuilder;
     private final SecureGenerateUrlString secureGenerateURLString;
-    private final ValidateUrl validateUrl;
 
-    public GenerateShortUrlUseCase(UrlRepository urlRepository, UrlBuilder urlBuilder, SecureGenerateUrlString secureGenerateURLString, ValidateUrl validateUrl) {
+    public GenerateShortUrlUseCase(UrlRepository urlRepository, UrlBuilder urlBuilder, SecureGenerateUrlString secureGenerateURLString) {
         this.urlRepository = urlRepository;
         this.urlBuilder = urlBuilder;
         this.secureGenerateURLString = secureGenerateURLString;
-        this.validateUrl = validateUrl;
     }
 
 
     public UrlResponseDTO execute(UrlRequestDTO request) {
-        if (!validateUrl.isValidUrl(request.originalUrl())) {
-            throw new InvalidUrlException("Invalid URL");
-        }
 
         int maxAttempts = 3;
         for (int attempt = 0; attempt < maxAttempts; attempt++) {
