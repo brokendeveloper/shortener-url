@@ -43,7 +43,7 @@ public class ShortenUrlControllerV1 {
                     @ApiResponse(
                             responseCode = "400",
                             description = "Invalid input data",
-                            content = @Content(schema = @Schema(example = "{\"message\": \"The original URL cannot be empty\"}"))
+                            content = @Content(schema = @Schema(example = "{\"message\": \"Invalid URL\"}"))
                     ),
                     @ApiResponse(
                             responseCode = "500",
