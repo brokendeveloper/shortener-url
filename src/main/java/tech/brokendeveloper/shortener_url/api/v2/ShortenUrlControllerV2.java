@@ -33,7 +33,7 @@ public class ShortenUrlControllerV2 {
     @PostMapping("/shorten")
     @Operation(
             summary = "Create a shortened URL (v2)",
-            description = "Receives an original URL and returns a shortened version using UUID-based short code."
+            description = "Receives an original URL and returns a shortened version using NanoID short code."
     )
     @ApiResponses(
             {
