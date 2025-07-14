@@ -3,6 +3,7 @@ package tech.brokendeveloper.shortener_url.domain.url.useCases;
 import org.springframework.stereotype.Service;
 import tech.brokendeveloper.shortener_url.domain.url.Url;
 import tech.brokendeveloper.shortener_url.domain.url.UrlRepository;
+import tech.brokendeveloper.shortener_url.exceptions.ShortUrlNotFoundException;
 
 @Service
 public class FindOriginalUrlUseCase {
