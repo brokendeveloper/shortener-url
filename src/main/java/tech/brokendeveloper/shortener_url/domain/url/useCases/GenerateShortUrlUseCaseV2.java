@@ -10,7 +10,7 @@ import tech.brokendeveloper.shortener_url.domain.url.Url;
 import tech.brokendeveloper.shortener_url.domain.url.UrlRepository;
 import tech.brokendeveloper.shortener_url.exceptions.ShortUrlGenerationException;
 import tech.brokendeveloper.shortener_url.utils.UrlBuilder;
-import tech.brokendeveloper.shortener_url.utils.UuidShortCodeGenerator;
+import tech.brokendeveloper.shortener_url.utils.NanoIdShortCodeGenerator;
 
 @Service
 public class GenerateShortUrlUseCaseV2 {
@@ -19,12 +19,12 @@ public class GenerateShortUrlUseCaseV2 {
 
     private final UrlRepository urlRepository;
     private final UrlBuilder urlBuilder;
-    private final UuidShortCodeGenerator uuidShortCodeGenerator;
+    private final NanoIdShortCodeGenerator nanoIdShortCodeGenerator;
 
-    public GenerateShortUrlUseCaseV2(UrlRepository urlRepository, UrlBuilder urlBuilder, UuidShortCodeGenerator uuidShortCodeGenerator){
+    public GenerateShortUrlUseCaseV2(UrlRepository urlRepository, UrlBuilder urlBuilder, NanoIdShortCodeGenerator nanoIdShortCodeGenerator){
         this.urlRepository = urlRepository;
         this.urlBuilder = urlBuilder;
-        this.uuidShortCodeGenerator = uuidShortCodeGenerator;
+        this.nanoIdShortCodeGenerator = nanoIdShortCodeGenerator;
     }
 
     public ShortenUrlResponseDtoV2 execute(ShortenUrlRequestDtoV2 request){
@@ -32,7 +32,7 @@ public class GenerateShortUrlUseCaseV2 {
         int maxAttempts = 3;
         for(int attempt = 0; attempt < maxAttempts; attempt++){
 
-            String newShortCode = uuidShortCodeGenerator.generateUuidShortCode();
+            String newShortCode = nanoIdShortCodeGenerator.generateUuidShortCode();
             String newShortUrl = urlBuilder.builderUrl(newShortCode);
 
             Url urlEntity = new Url();

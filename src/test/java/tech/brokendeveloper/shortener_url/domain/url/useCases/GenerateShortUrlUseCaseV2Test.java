@@ -12,7 +12,7 @@ import tech.brokendeveloper.shortener_url.domain.url.Url;
 import tech.brokendeveloper.shortener_url.domain.url.UrlRepository;
 import tech.brokendeveloper.shortener_url.exceptions.ShortUrlGenerationException;
 import tech.brokendeveloper.shortener_url.utils.UrlBuilder;
-import tech.brokendeveloper.shortener_url.utils.UuidShortCodeGenerator;
+import tech.brokendeveloper.shortener_url.utils.NanoIdShortCodeGenerator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -29,7 +29,7 @@ public class GenerateShortUrlUseCaseV2Test {
     private UrlBuilder urlBuilder;
 
     @Mock
-    private UuidShortCodeGenerator uuidShortCodeGenerator;
+    private NanoIdShortCodeGenerator nanoIdShortCodeGenerator;
 
     @InjectMocks
     private GenerateShortUrlUseCaseV2 useCase;
@@ -44,7 +44,7 @@ public class GenerateShortUrlUseCaseV2Test {
         String shortUrl = "https://localhost:8080/uuid123";
         ShortenUrlRequestDtoV2 request = new ShortenUrlRequestDtoV2(originalUrl);
 
-        when(uuidShortCodeGenerator.generateUuidShortCode()).thenReturn(shortCode);
+        when(nanoIdShortCodeGenerator.generateUuidShortCode()).thenReturn(shortCode);
         when(urlBuilder.builderUrl(shortCode)).thenReturn(shortUrl);
         when(urlRepository.save(any(Url.class))).thenReturn(new Url());
 
@@ -54,7 +54,7 @@ public class GenerateShortUrlUseCaseV2Test {
         // then
         assertEquals(shortUrl, response.shortenedUrl());
         verify(urlRepository).save(any(Url.class));
-        verify(uuidShortCodeGenerator).generateUuidShortCode();
+        verify(nanoIdShortCodeGenerator).generateUuidShortCode();
         verify(urlBuilder).builderUrl(shortCode);
     }
 
@@ -70,7 +70,7 @@ public class GenerateShortUrlUseCaseV2Test {
         String shortUrl2 = "https://localhost:8080/uuid456";
         ShortenUrlRequestDtoV2 request = new ShortenUrlRequestDtoV2(originalUrl);
 
-        when(uuidShortCodeGenerator.generateUuidShortCode())
+        when(nanoIdShortCodeGenerator.generateUuidShortCode())
                 .thenReturn(shortCode1)
                 .thenReturn(shortCode2);
         when(urlBuilder.builderUrl(shortCode1)).thenReturn(shortUrl1);
@@ -86,7 +86,7 @@ public class GenerateShortUrlUseCaseV2Test {
         // then
         assertEquals(shortUrl2, response.shortenedUrl());
         verify(urlRepository, times(2)).save(any(Url.class));
-        verify(uuidShortCodeGenerator, times(2)).generateUuidShortCode();
+        verify(nanoIdShortCodeGenerator, times(2)).generateUuidShortCode();
         verify(urlBuilder).builderUrl(shortCode1);
         verify(urlBuilder).builderUrl(shortCode2);
     }
@@ -103,7 +103,7 @@ public class GenerateShortUrlUseCaseV2Test {
         String shortUrl1 = "https://localhost:8080/uuid123";
         ShortenUrlRequestDtoV2 request = new ShortenUrlRequestDtoV2(originalUrl);
 
-        when(uuidShortCodeGenerator.generateUuidShortCode())
+        when(nanoIdShortCodeGenerator.generateUuidShortCode())
                 .thenReturn(shortCode1)
                 .thenReturn(shortCode2)
                 .thenReturn(shortCode3);
@@ -117,7 +117,7 @@ public class GenerateShortUrlUseCaseV2Test {
         // when & then
         assertThrows(ShortUrlGenerationException.class, () -> useCase.execute(request));
         verify(urlRepository, times(3)).save(any(Url.class));
-        verify(uuidShortCodeGenerator, times(3)).generateUuidShortCode();
+        verify(nanoIdShortCodeGenerator, times(3)).generateUuidShortCode();
     }
 
 }
