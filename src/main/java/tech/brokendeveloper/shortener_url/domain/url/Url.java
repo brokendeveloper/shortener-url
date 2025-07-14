@@ -29,6 +29,9 @@ public class Url {
     @Column(nullable = false, unique = true)
     private String shortenedUrl;
 
+    @Column(nullable = false, unique = true)
+    private String shortCode;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 }
