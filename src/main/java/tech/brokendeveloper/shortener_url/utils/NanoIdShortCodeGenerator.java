@@ -11,7 +11,7 @@ public class NanoIdShortCodeGenerator {
 
     private final SecureRandom random = new SecureRandom();
 
-    public String generateNanoShortCode() {
+    public String generateNanoIdShortCode() {
 
         int length = 5 + new java.security.SecureRandom().nextInt(4);
 

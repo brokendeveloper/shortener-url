@@ -32,7 +32,7 @@ public class GenerateShortUrlUseCaseV2 {
         int maxAttempts = 3;
         for(int attempt = 0; attempt < maxAttempts; attempt++){
 
-            String newShortCode = nanoIdShortCodeGenerator.generateUuidShortCode();
+            String newShortCode = nanoIdShortCodeGenerator.generateNanoIdShortCode();
             String newShortUrl = urlBuilder.builderUrl(newShortCode);
 
             Url urlEntity = new Url();
