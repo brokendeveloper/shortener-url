@@ -1,4 +1,4 @@
-package tech.brokendeveloper.shortener_url.domain.url.useCases;
+package tech.brokendeveloper.shortener_url.services;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,7 +11,6 @@ import tech.brokendeveloper.shortener_url.repositories.UrlRepository;
 import tech.brokendeveloper.shortener_url.dto.v1.ShortenUrlRequestDtoV1;
 import tech.brokendeveloper.shortener_url.dto.v1.ShortenUrlResponseDtoV1;
 import tech.brokendeveloper.shortener_url.exceptions.ShortUrlGenerationException;
-import tech.brokendeveloper.shortener_url.services.GenerateShortUrlServiceV1;
 import tech.brokendeveloper.shortener_url.utils.SecureStringShortCodeGenerator;
 import tech.brokendeveloper.shortener_url.utils.UrlBuilder;
 

@@ -1,11 +1,10 @@
-    package tech.brokendeveloper.shortener_url.domain.url.api.v1.dto;
+    package tech.brokendeveloper.shortener_url.dto.v1;
 
 
     import jakarta.validation.Validation;
     import jakarta.validation.Validator;
     import jakarta.validation.ValidatorFactory;
     import org.junit.jupiter.api.Test;
-    import tech.brokendeveloper.shortener_url.dto.v1.ShortenUrlRequestDtoV1;
 
     import static org.junit.jupiter.api.Assertions.assertFalse;
     import static org.junit.jupiter.api.Assertions.assertTrue;
