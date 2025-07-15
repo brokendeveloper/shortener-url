@@ -169,4 +169,3 @@ Acesse a documentação interativa em:
 Dúvidas, sugestões ou bugs?
 Abra uma issue ou entre em contato pelo [e-mail](mailto:contatoluccasf9@gmail.com).
 
-Shortener URL — feito com 💙 e Java Spring Boot
