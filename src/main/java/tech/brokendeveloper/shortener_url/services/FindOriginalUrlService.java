@@ -3,7 +3,7 @@ package tech.brokendeveloper.shortener_url.services;
 import org.springframework.stereotype.Service;
 import tech.brokendeveloper.shortener_url.domain.Url;
 import tech.brokendeveloper.shortener_url.repositories.UrlRepository;
-import tech.brokendeveloper.shortener_url.exceptions.ShortUrlNotFoundException;
+import tech.brokendeveloper.shortener_url.exceptions.ShortCodeNotFoundException;
 
 @Service
 public class FindOriginalUrlService {
@@ -17,6 +17,6 @@ public class FindOriginalUrlService {
     public String execute(String shortCode) {
         return urlRepository.findByShortCode(shortCode)
                 .map(Url::getOriginalUrl)
-                .orElseThrow(() -> new ShortUrlNotFoundException(shortCode));
+                .orElseThrow(() -> new ShortCodeNotFoundException(shortCode));
     }
 }

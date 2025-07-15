@@ -25,8 +25,8 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponseDto(ex.getMessage()));
     }
 
-    @ExceptionHandler(ShortUrlNotFoundException.class)
-    public ResponseEntity<ErrorResponseDto> handleNotFound(ShortUrlNotFoundException ex) {
+    @ExceptionHandler(ShortCodeNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleNotFound(ShortCodeNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new ErrorResponseDto(ex.getMessage()));
     }
