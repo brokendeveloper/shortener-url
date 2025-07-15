@@ -15,6 +15,18 @@ services:
     volumes:
       - shortener-url-data:/var/lib/postgresql/data
 
+  app:
+    build: .
+    container_name: shortener-url-app
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - shortener-network
+
 
 networks:
     shortener-network:
@@ -22,3 +34,4 @@ networks:
 
 volumes:
   shortener-url-data:
+
