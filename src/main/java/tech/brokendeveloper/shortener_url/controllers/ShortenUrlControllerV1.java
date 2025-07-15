@@ -1,4 +1,4 @@
-package tech.brokendeveloper.shortener_url.api.v1;
+package tech.brokendeveloper.shortener_url.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import tech.brokendeveloper.shortener_url.api.v1.dto.ShortenUrlRequestDtoV1;
-import tech.brokendeveloper.shortener_url.api.v1.dto.ShortenUrlResponseDtoV1;
-import tech.brokendeveloper.shortener_url.domain.url.useCases.GenerateShortUrlUseCaseV1;
+import tech.brokendeveloper.shortener_url.dto.v1.ShortenUrlRequestDtoV1;
+import tech.brokendeveloper.shortener_url.dto.v1.ShortenUrlResponseDtoV1;
+import tech.brokendeveloper.shortener_url.services.GenerateShortUrlServiceV1;
 
 @RestController
 @RequestMapping("/api/v1/urls")
 @Tag(name = "URLs", description = "Endpoints about the URLs - version 1")
 public class ShortenUrlControllerV1 {
 
-    private final GenerateShortUrlUseCaseV1 generateShortUrlUseCaseV1;
+    private final GenerateShortUrlServiceV1 generateShortUrlServiceV1;
 
-    public ShortenUrlControllerV1(GenerateShortUrlUseCaseV1 generateShortUrlUseCaseV1) {
-        this.generateShortUrlUseCaseV1 = generateShortUrlUseCaseV1;
+    public ShortenUrlControllerV1(GenerateShortUrlServiceV1 generateShortUrlServiceV1) {
+        this.generateShortUrlServiceV1 = generateShortUrlServiceV1;
     }
 
     @PostMapping("/shorten")
@@ -53,7 +53,7 @@ public class ShortenUrlControllerV1 {
             }
     )
     public ResponseEntity<ShortenUrlResponseDtoV1>shorten(@RequestBody @Valid ShortenUrlRequestDtoV1 request) {
-        ShortenUrlResponseDtoV1 response = generateShortUrlUseCaseV1.execute(request);
+        ShortenUrlResponseDtoV1 response = generateShortUrlServiceV1.execute(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }

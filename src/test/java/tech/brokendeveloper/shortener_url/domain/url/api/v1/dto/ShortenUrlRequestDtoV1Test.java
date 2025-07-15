@@ -5,7 +5,7 @@
     import jakarta.validation.Validator;
     import jakarta.validation.ValidatorFactory;
     import org.junit.jupiter.api.Test;
-    import tech.brokendeveloper.shortener_url.api.v1.dto.ShortenUrlRequestDtoV1;
+    import tech.brokendeveloper.shortener_url.dto.v1.ShortenUrlRequestDtoV1;
 
     import static org.junit.jupiter.api.Assertions.assertFalse;
     import static org.junit.jupiter.api.Assertions.assertTrue;

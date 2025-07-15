@@ -1,6 +1,5 @@
-package tech.brokendeveloper.shortener_url.domain.url;
+package tech.brokendeveloper.shortener_url.domain;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

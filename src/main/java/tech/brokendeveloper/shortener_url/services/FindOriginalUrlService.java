@@ -1,16 +1,16 @@
-package tech.brokendeveloper.shortener_url.domain.url.useCases;
+package tech.brokendeveloper.shortener_url.services;
 
 import org.springframework.stereotype.Service;
-import tech.brokendeveloper.shortener_url.domain.url.Url;
-import tech.brokendeveloper.shortener_url.domain.url.UrlRepository;
+import tech.brokendeveloper.shortener_url.domain.Url;
+import tech.brokendeveloper.shortener_url.repositories.UrlRepository;
 import tech.brokendeveloper.shortener_url.exceptions.ShortUrlNotFoundException;
 
 @Service
-public class FindOriginalUrlUseCase {
+public class FindOriginalUrlService {
 
     private final UrlRepository urlRepository;
 
-    public FindOriginalUrlUseCase(UrlRepository urlRepository) {
+    public FindOriginalUrlService(UrlRepository urlRepository) {
         this.urlRepository = urlRepository;
     }
 
