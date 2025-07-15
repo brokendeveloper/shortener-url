@@ -19,4 +19,9 @@ public class FindOriginalUrlService {
                 .map(Url::getOriginalUrl)
                 .orElseThrow(() -> new ShortCodeNotFoundException(shortCode));
     }
+
+    public Url findEntity(String shortCode) {
+        return urlRepository.findByShortCode(shortCode)
+                .orElseThrow(() -> new ShortCodeNotFoundException(shortCode));
+    }
 }

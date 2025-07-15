@@ -13,15 +13,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import tech.brokendeveloper.shortener_url.services.FindOriginalUrlService;
 import tech.brokendeveloper.shortener_url.exceptions.dto.ErrorResponseDto;
+import tech.brokendeveloper.shortener_url.services.RedirectService;
 
 @RestController
 @Tag(name = "Redirect", description = "Endpoint for redirecting shortened URLs")
 public class RedirectController {
 
-    private final FindOriginalUrlService findOriginalUrlService;
+    private final RedirectService redirectService;
 
-    public RedirectController(FindOriginalUrlService findOriginalUrlService) {
-        this.findOriginalUrlService = findOriginalUrlService;
+    public RedirectController(RedirectService redirectService) {
+        this.redirectService = redirectService;
     }
 
 
@@ -45,7 +46,7 @@ public class RedirectController {
             @Parameter(description = "Short code of the shortened URL", example = "oRGXi4e")
             @PathVariable String shortCode
     ) {
-        String originalUrl = findOriginalUrlService.execute(shortCode);
+        String originalUrl = redirectService.getOriginalUrlAndRegisterAccess(shortCode);
         return ResponseEntity.status(302)
                 .header("Location", originalUrl)
                 .build();
