@@ -1,4 +1,4 @@
-package tech.brokendeveloper.shortener_url.domain.url.useCases;
+package tech.brokendeveloper.shortener_url.services;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -6,10 +6,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
-import tech.brokendeveloper.shortener_url.api.v2.dto.ShortenUrlRequestDtoV2;
-import tech.brokendeveloper.shortener_url.api.v2.dto.ShortenUrlResponseDtoV2;
-import tech.brokendeveloper.shortener_url.domain.url.Url;
-import tech.brokendeveloper.shortener_url.domain.url.UrlRepository;
+import tech.brokendeveloper.shortener_url.dto.v2.ShortenUrlRequestDtoV2;
+import tech.brokendeveloper.shortener_url.dto.v2.ShortenUrlResponseDtoV2;
+import tech.brokendeveloper.shortener_url.domain.Url;
+import tech.brokendeveloper.shortener_url.repositories.UrlRepository;
 import tech.brokendeveloper.shortener_url.exceptions.ShortUrlGenerationException;
 import tech.brokendeveloper.shortener_url.utils.UrlBuilder;
 import tech.brokendeveloper.shortener_url.utils.NanoIdShortCodeGenerator;
@@ -20,7 +20,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class GenerateShortUrlUseCaseV2Test {
+public class GenerateShortUrlServiceV2Test {
 
     @Mock
     private UrlRepository urlRepository;
@@ -32,7 +32,7 @@ public class GenerateShortUrlUseCaseV2Test {
     private NanoIdShortCodeGenerator nanoIdShortCodeGenerator;
 
     @InjectMocks
-    private GenerateShortUrlUseCaseV2 useCase;
+    private GenerateShortUrlServiceV2 useCase;
 
     // 201 - created
     // Scenario 1: url created successfully

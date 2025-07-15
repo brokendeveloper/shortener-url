@@ -31,7 +31,7 @@ public class SwaggerConfig {
                         )
                 )
                 .servers(List.of(
-                        new Server().url("https://localhost:8080").description("Local server")
+                        new Server().url("http://localhost:8080").description("Local server")
                 ));
     }
     }

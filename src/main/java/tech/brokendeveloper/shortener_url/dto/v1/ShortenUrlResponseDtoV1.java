@@ -1,4 +1,4 @@
-package tech.brokendeveloper.shortener_url.api.v1.dto;
+package tech.brokendeveloper.shortener_url.dto.v1;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

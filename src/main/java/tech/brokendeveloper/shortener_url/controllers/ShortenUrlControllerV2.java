@@ -1,4 +1,4 @@
-package tech.brokendeveloper.shortener_url.api.v2;
+package tech.brokendeveloper.shortener_url.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,21 +13,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import tech.brokendeveloper.shortener_url.api.v1.dto.ShortenUrlResponseDtoV1;
-import tech.brokendeveloper.shortener_url.api.v2.dto.ShortenUrlRequestDtoV2;
-import tech.brokendeveloper.shortener_url.api.v2.dto.ShortenUrlResponseDtoV2;
-import tech.brokendeveloper.shortener_url.domain.url.useCases.GenerateShortUrlUseCaseV2;
+import tech.brokendeveloper.shortener_url.dto.v2.ShortenUrlRequestDtoV2;
+import tech.brokendeveloper.shortener_url.dto.v2.ShortenUrlResponseDtoV2;
+import tech.brokendeveloper.shortener_url.services.GenerateShortUrlServiceV2;
 
 @RestController
 @RequestMapping("/api/v2/urls")
 @Tag(name = "URLs v2", description = "Endpoints for URL shortening - version 2")
 public class ShortenUrlControllerV2 {
 
-    private final GenerateShortUrlUseCaseV2 generateShortUrlUseCaseV2;
+    private final GenerateShortUrlServiceV2 generateShortUrlServiceV2;
 
 
-    public ShortenUrlControllerV2(GenerateShortUrlUseCaseV2 generateShortUrlUseCaseV2) {
-        this.generateShortUrlUseCaseV2 = generateShortUrlUseCaseV2;
+    public ShortenUrlControllerV2(GenerateShortUrlServiceV2 generateShortUrlServiceV2) {
+        this.generateShortUrlServiceV2 = generateShortUrlServiceV2;
     }
 
     @PostMapping("/shorten")
@@ -55,7 +54,7 @@ public class ShortenUrlControllerV2 {
             }
     )
     public ResponseEntity<ShortenUrlResponseDtoV2>shorten(@RequestBody @Valid ShortenUrlRequestDtoV2 request) {
-        ShortenUrlResponseDtoV2 response = generateShortUrlUseCaseV2.execute(request);
+        ShortenUrlResponseDtoV2 response = generateShortUrlServiceV2.execute(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }

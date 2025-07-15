@@ -1,6 +1,5 @@
-package tech.brokendeveloper.shortener_url.domain.url;
+package tech.brokendeveloper.shortener_url.domain;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +27,9 @@ public class Url {
 
     @Column(nullable = false, unique = true)
     private String shortenedUrl;
+
+    @Column(nullable = false, unique = true)
+    private String shortCode;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
