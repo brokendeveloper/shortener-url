@@ -39,6 +39,7 @@ public class GenerateShortUrlUseCaseV1 {
             Url urlEntity = new Url();
             urlEntity.setOriginalUrl(request.originalUrl());
             urlEntity.setShortenedUrl(newShortUrl);
+            urlEntity.setShortCode(newShortCode);
 
             try {
                 urlEntity = urlRepository.save(urlEntity);
