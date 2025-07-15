@@ -1,6 +1,6 @@
 # Shortener URL
 
-Um encurtador de URLs moderno, robusto e documentado, com suporte a múltiplas versões de API, métricas de acesso e pronto para rodar tanto localmente quanto em ambiente Docker.
+Um encurtador de URLs moderno, robusto e documentado, com suporte a múltiplas versões de API, métricas de acesso e pronto para rodar tanto localmente quanto em ambiente Docker. Feito para o teste técnico da vaga de backend JR da empresa TDS Company.
 
 ---
 
