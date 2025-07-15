@@ -1,0 +1,9 @@
+package tech.brokendeveloper.shortener_url.dto.v2;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public record ShortenUrlResponseDtoV2(
+        @Schema(description = "Short URL after all shortener process using NanoID", example = "https://localhost:PortExample/NanoIdShortCode")
+        String shortenedUrl
+) {
+}
