@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "url_acess")
+@Table(name = "url_access")
 @Getter
 @Setter
 @NoArgsConstructor

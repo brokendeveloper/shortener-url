@@ -19,15 +19,13 @@ public class RedirectService {
     }
 
     public String getOriginalUrlAndRegisterAccess(String shortCode) {
-        // Busca a entidade Url
+
         Url url = findOriginalUrlService.findEntity(shortCode);
 
-        // Registra o acesso
         urlAccessRepository.save(new UrlAccess(url, LocalDateTime.now()));
 
-        // Retorna a URL original
-
         String originalUrl = url.getOriginalUrl();
+
         return originalUrl;
     }
 }
