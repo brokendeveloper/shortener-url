@@ -10,7 +10,7 @@ import tech.brokendeveloper.shortener_url.domain.UrlAccess;
 import java.util.UUID;
 
 @Repository
-public interface UrlAcessRepository extends JpaRepository<UrlAccess, Long> {
+public interface UrlAccessRepository extends JpaRepository<UrlAccess, Long> {
 
     long countByUrl(Url url);
 

@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @Table(name = "url_acess")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class UrlAccess {
 
@@ -25,4 +24,9 @@ public class UrlAccess {
     private Url url;
 
     private LocalDateTime accessTime;
+
+    public UrlAccess(Url url, LocalDateTime accessTime) {
+        this.url = url;
+        this.accessTime = accessTime;
+    }
 }
